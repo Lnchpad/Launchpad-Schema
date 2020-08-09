@@ -1,0 +1,73 @@
+syntax = "proto3";
+package launchpad;
+
+import "google/protobuf/timestamp.proto";
+
+//[go_lang options start]
+option go_package = "app/stats/pb";
+//[go_lang end start]
+
+message Metrics {
+  google.protobuf.Timestamp timestamp = 1;
+
+  // the origin of the metrics
+  string hostname = 2;
+
+  // The service type this message originated from e.g. Gateway, Agent, Admin;
+  string service = 3;
+
+  string type = 4;
+  // Can either be memory, cpu or network
+  string label = 5;
+  float value = 6;
+}
+
+message WebServerStats {
+  google.protobuf.Timestamp timestamp = 1;
+
+  // the origin of the metrics
+  string hostname = 2;
+
+  // The service type this message originated from e.g. Gateway, Agent, Admin;
+  string service = 3;
+
+  string type = 4;
+
+  uint32 activeConnections = 5;
+  uint32 accepted = 6;
+  uint32 handled = 7;
+  uint32 requests = 8;
+  uint32 reading = 9;
+  uint32 writing = 10;
+  uint32 waiting = 11;
+  // the raw string received after reading the response body
+  string rawData = 12;
+  // flag that indicates whether the status has been parsed properly or not
+  bool error = 13;
+}
+
+// Simple log message that only contains a timestamp & the log message
+// leaving the processing to processors receiving this message
+message SimpleLog {
+  google.protobuf.Timestamp timestamp = 1;
+  string hostname = 2;
+
+  // The service type this message originated from e.g. Gateway, Agent, Admin
+  string service = 3;
+
+  // The type of message. In this case, it should always be `simplelog`
+  string type = 4;
+  string message = 5;
+}
+
+message DetailedLog {
+  google.protobuf.Timestamp timestamp = 1;
+  string hostname = 2;
+  // The service type this message originated from e.g. Gateway, Agent, Admin
+  string service = 3;
+  // The type of message. In this case, it should always be `simplelog`
+  string type = 4;
+  string traceId = 5;
+  string userId = 6;
+  string message = 7;
+}

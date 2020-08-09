@@ -17,7 +17,7 @@ Contains the global schema definition for message exchange used by the Launchpad
 2. Generating Protobuf Stubs
     
     ```bash
-    $ protoc -I=./launchpad-schema -I=./launchpad-schema/include --go_out=./launchpad-agent launchpad-schema/metrics.proto
+    $ protoc -I=./launchpad-schema -I=./launchpad-schema/include --go_out=./launchpad-agent launchpad-schema/stats.proto
     ```
 
 
