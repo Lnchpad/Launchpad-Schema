@@ -1,0 +1,14 @@
+syntax = "proto3";
+package launchpad;
+
+import "google/protobuf/timestamp.proto";
+
+//[go_lang options start]
+option go_package = "internal/sync";
+//[go_lang end start]
+
+message PortalAppDeployment {
+  google.protobuf.Timestamp timestamp = 1;
+  string appName = 2;
+  string artifactUrl = 3;
+}

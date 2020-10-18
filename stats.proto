@@ -4,7 +4,7 @@ package launchpad;
 import "google/protobuf/timestamp.proto";
 
 //[go_lang options start]
-option go_package = "app/stats/pb";
+option go_package = "internal/stats/pb";
 //[go_lang end start]
 
 message Metrics {
